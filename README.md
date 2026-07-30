@@ -1,10 +1,7 @@
 # Eventer — Accessibility Workshop App
 
 A small, static **Events platform** used as the starting point for an accessibility
-workshop. It is intentionally built with **many natural accessibility issues** (missing
-attributes, wrong-but-plausible patterns) for participants to find and fix. The
-underlying code is otherwise written to normal senior-level standards (typed, tested,
-component-per-file, reusable hooks).
+workshop. It is intentionally built with **many natural accessibility issues** for participants to find and fix.
 
 > There is **no backend**. All data is dummy and stored in `localStorage`, seeded on
 > first load.

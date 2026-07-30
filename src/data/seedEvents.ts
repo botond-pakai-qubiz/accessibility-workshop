@@ -55,7 +55,7 @@ export function buildSeedEvents(): EventItem[] {
     },
     {
       id: "evt-node-congress",
-      name: "Node Congress",
+      name: "Node Congress — FAIL",
       description:
         "Backend patterns, streaming, and performance for modern Node.js applications.",
       location: "Lisbon, PT",
@@ -94,7 +94,7 @@ export function buildSeedEvents(): EventItem[] {
     },
     {
       id: "evt-jamstack",
-      name: "Jamstack Live",
+      name: "Jamstack Live — FAIL",
       description:
         "Edge functions, static rendering and the modern content pipeline.",
       location: "Paris, FR",
@@ -120,7 +120,7 @@ export function buildSeedEvents(): EventItem[] {
     },
     {
       id: "evt-graphql-galaxy",
-      name: "GraphQL Galaxy",
+      name: "GraphQL Galaxy — 404",
       description:
         "Schema design, federation and performance for GraphQL at scale.",
       location: "Dublin, IE",
@@ -159,7 +159,7 @@ export function buildSeedEvents(): EventItem[] {
     },
     {
       id: "evt-ai-frontend",
-      name: "AI for Frontend",
+      name: "AI for Frontend — FAIL",
       description:
         "Pragmatic AI features in the browser without shipping the whole model.",
       location: "Stockholm, SE",

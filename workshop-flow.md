@@ -18,25 +18,25 @@
 
 ## Setup (~30–40 min)
 
-- **QAs:** test the shared demo link, **keyboard navigation only**. Log proper bugs: priority (with why), broken WCAG rule #, short repro. Ignore functional bugs.
+- **QAs:** test the shared demo link, **keyboard navigation only**. Log proper bugs: priority (with why, who's impacted), broken WCAG rule #, short repro. Ignore functional bugs.
 - **Devs:** fork the repo, run locally, deploy the fork to Netlify/Vercel so the team can test fixes; skim the app + code and ask questions.
 
 ## Preparation (~30–40 min)
 
-- **Both roles:** run axe DevTools + browser widgets → capture initial score/issues. Facilitator explains rules and tooling.
+- **Both roles:** run axe DevTools and other browser tools → capture initial score and issues. Rules and tooling will be explained.
 - Discuss why accessibility is **both** roles' responsibility.
-- **Common:** agree on issue priority together — what to fix first and why, how to reason about severity and order.
+- **Both roles:** filter the issues list found before and agree on issue priority together — what to fix first and why, how to reason about severity and order.
 
 ## Fixing (~1h30)
 
-- **QAs:** continue testing/logging; validate fixes manually or with browser tools.
-- **Devs:** fix → deploy → hand to QA to validate.
-- **Common:** tackle subjective/ambiguous rules together and agree on the right call for this use case.
+- **QAs:** continue testing/logging; validate fixes manually and with browser tools.
+- **Devs:** fix → deploy → hand to QA to validate → repeat. Add `jest-axe` and write/update unit tests to catch accessibility issues.
+- **Both roles:** tackle subjective/ambiguous rules together and agree on the right call for this use case.
 - Run Gabi's linter + tool during this time. Support available throughout.
 
 ## Final hour (flex)
 
-- Either continue fixing + validating, **or** introduce web screen readers and have teams test/fix screen-reader issues on 2–3 pre-picked pages.
-- Keep it from getting overloaded with information.
+- Either continue fixing + validating, **or** introduce web screen readers and have teams test/fix screen-reader issues on 1-2 pre-picked pages.
+- Avoid overloading the workshop with information - better to split in 2 if that makes sense.
 
 **Total: ~4h**

@@ -37,6 +37,7 @@ export function EventDetailPage() {
           type: "success",
           text: "Payment successful. See you there!",
         });
+        setModalOpen(false);
         break;
       case "error":
         setResult({

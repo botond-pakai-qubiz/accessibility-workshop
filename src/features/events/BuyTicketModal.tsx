@@ -35,6 +35,12 @@ export function BuyTicketModal({
     onPay();
   };
 
+  const isComplete =
+    card.trim() !== "" &&
+    name.trim() !== "" &&
+    expiry.trim() !== "" &&
+    cvc.trim() !== "";
+
   return (
     <Modal open={open} title={`Buy ticket — ${event.name}`} onClose={onClose}>
       {result && (
@@ -88,7 +94,9 @@ export function BuyTicketModal({
           <Button type="button" variant="secondary" onClick={onClose}>
             Cancel
           </Button>
-          <Button type="submit">Pay now</Button>
+          <Button type="submit" disabled={!isComplete}>
+            Pay now
+          </Button>
         </div>
       </form>
     </Modal>
