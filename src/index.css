@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * NOTE (workshop): global focus outline is intentionally removed here without a
+ * visible replacement. This is one of the planted, "natural" accessibility
+ * issues participants are expected to find and fix.
+ */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f6f7f9;
+  color: #1f2430;
+}
