@@ -4,24 +4,29 @@ import { formatCurrency, formatDate } from "@/lib/format";
 interface EventCardProps {
   event: EventItem;
   onOpen?: (eventId: string) => void;
+  onDismiss?: (eventId: string) => void;
   badge?: string;
 }
 
-/**
- * NOTE (workshop): the whole card is a clickable <div> (not a link or button),
- * so it is not focusable or keyboard-operable, and the image has no alt text.
- * Planted issues.
- */
-export function EventCard({ event, onOpen, badge }: EventCardProps) {
+export function EventCard({ event, onOpen, onDismiss, badge }: EventCardProps) {
   const clickable = typeof onOpen === "function";
 
   return (
     <div
       onClick={clickable ? () => onOpen?.(event.id) : undefined}
-      className={`flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white ${
+      className={`relative flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white ${
         clickable ? "cursor-pointer hover:border-brand-300 hover:shadow-md" : ""
       }`}
     >
+      {onDismiss && (
+        <button
+          type="button"
+          onClick={() => onDismiss(event.id)}
+          className="absolute right-2 top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-slate-900/60 text-white hover:bg-slate-900/80"
+        >
+          ×
+        </button>
+      )}
       <div className="relative">
         <img src={event.image} className="h-36 w-full object-cover" />
         {badge && (

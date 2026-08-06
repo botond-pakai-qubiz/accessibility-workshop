@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -6,23 +6,6 @@ export function Header() {
   const { currentUser, isAuthenticated, isAdmin, logout } = useAuth();
   const navigate = useNavigate();
   const [adminMenuOpen, setAdminMenuOpen] = useState(false);
-  const adminMenuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!adminMenuOpen) {
-      return;
-    }
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        adminMenuRef.current &&
-        !adminMenuRef.current.contains(event.target as Node)
-      ) {
-        setAdminMenuOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [adminMenuOpen]);
 
   const handleLogout = () => {
     logout();
@@ -58,11 +41,12 @@ export function Header() {
             </>
           )}
           {isAdmin && (
-            <div ref={adminMenuRef} className="relative">
-              <span
-                onClick={() => setAdminMenuOpen((current) => !current)}
-                className="cursor-pointer text-slate-600 hover:text-brand-600"
-              >
+            <div
+              className="relative"
+              onMouseEnter={() => setAdminMenuOpen(true)}
+              onMouseLeave={() => setAdminMenuOpen(false)}
+            >
+              <span className="cursor-pointer text-slate-600 hover:text-brand-600">
                 Admin
               </span>
               {adminMenuOpen && (

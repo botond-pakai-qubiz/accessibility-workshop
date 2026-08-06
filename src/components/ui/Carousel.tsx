@@ -10,10 +10,6 @@ interface CarouselProps<T> {
 
 /**
  * Simple windowed carousel.
- *
- * NOTE (workshop): the previous/next controls are icon-only <div>s, so they are
- * not focusable or operable by keyboard and expose no accessible name. There is
- * also no "slide X of Y" status for assistive tech. Planted issues.
  */
 export function Carousel<T>({
   items,

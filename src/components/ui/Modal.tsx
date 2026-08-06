@@ -9,12 +9,6 @@ interface ModalProps {
 
 /**
  * Lightweight modal.
- *
- * NOTE (workshop): this modal intentionally does not manage focus — focus is
- * not moved into the dialog on open, it is not trapped, Escape does not close
- * it, the background is not inert, and focus is not restored to the trigger on
- * close. The title is a styled text node rather than a heading, and there is no
- * dialog semantics. These are the planted accessibility issues.
  */
 export function Modal({ open, title, onClose, children }: ModalProps) {
   if (!open) {

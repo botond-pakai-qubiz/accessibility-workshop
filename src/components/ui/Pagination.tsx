@@ -4,11 +4,6 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-/**
- * NOTE (workshop): the current page is conveyed with background colour only
- * (no aria-current), and the previous/next controls are icon-only with no
- * accessible name. Planted issues.
- */
 export function Pagination({ page, pageCount, onPageChange }: PaginationProps) {
   if (pageCount <= 1) {
     return null;

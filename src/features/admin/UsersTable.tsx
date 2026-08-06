@@ -23,11 +23,6 @@ function sortIndicator(
   return sort.direction === "asc" ? " ▲" : " ▼";
 }
 
-/**
- * NOTE (workshop): sort state is not announced (no aria-sort), the checkbox
- * column header is empty, per-row checkboxes have no label, and the edit action
- * is an icon-only control with no accessible name. Planted issues.
- */
 export function UsersTable({
   users,
   selectedIds,

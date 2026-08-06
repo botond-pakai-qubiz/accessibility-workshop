@@ -14,11 +14,6 @@ interface DropdownProps<T extends string> {
 
 /**
  * Custom dropdown built from <div>s.
- *
- * NOTE (workshop): this is deliberately a mouse-only widget. The trigger is a
- * div that toggles on click, with no keyboard handlers and no listbox
- * semantics, so it cannot be opened or operated with the keyboard. This is one
- * of the required planted issues.
  */
 export function Dropdown<T extends string>({
   options,

@@ -7,10 +7,6 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 
 /**
  * Basic labelled text input used across the forms.
- *
- * NOTE (workshop): the visible label is a plain text node that is NOT
- * programmatically associated with the input, and the error is conveyed with
- * colour only. Both are intentional, "natural" accessibility issues.
  */
 export function TextField({
   label,

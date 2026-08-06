@@ -9,7 +9,7 @@ import { Carousel } from "@/components/ui/Carousel";
 export function DashboardPage() {
   const { currentUser } = useAuth();
   const events = useEvents();
-  const { registeredIds } = useRegistrations();
+  const { registeredIds, unregister } = useRegistrations();
   const navigate = useNavigate();
 
   const myEvents = useMemo(
@@ -48,6 +48,7 @@ export function DashboardPage() {
                 key={event.id}
                 event={event}
                 onOpen={openEvent}
+                onDismiss={unregister}
                 badge="Going"
               />
             ))}
