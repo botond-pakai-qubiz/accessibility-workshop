@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { ChatbotWidget } from "@/components/ui/ChatbotWidget";
+import { SessionTimeoutManager } from "@/features/session/SessionTimeoutManager";
 
 export function Layout() {
   return (
@@ -12,6 +13,7 @@ export function Layout() {
       </div>
       <Footer />
       <ChatbotWidget />
+      <SessionTimeoutManager />
     </div>
   );
 }
