@@ -55,10 +55,10 @@ export function EventDetailPage() {
   return (
     <div className="flex flex-col gap-6">
       <span
-        onClick={() => navigate("/events")}
+        onClick={() => navigate(-1)}
         className="cursor-pointer text-sm text-slate-400 hover:text-slate-600"
       >
-        ‹ Back to events
+        ‹ Back
       </span>
 
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">

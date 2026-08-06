@@ -35,11 +35,45 @@ export function BuyTicketModal({
     onPay();
   };
 
-  const isComplete =
-    card.trim() !== "" &&
-    name.trim() !== "" &&
-    expiry.trim() !== "" &&
-    cvc.trim() !== "";
+  const isCardValid = /^\d{16}$/.test(card);
+  const cardError =
+    card !== "" && !isCardValid ? "Card number must be exactly 16 digits." : "";
+
+  const isNameValid = /^[A-Za-z\s]+$/.test(name.trim());
+  const nameError =
+    name !== "" && !isNameValid ? "Name must only contain letters." : "";
+
+  const expiryFormatMatch = /^(\d{2})\/(\d{2})$/.exec(expiry);
+  const isExpiryFormatValid = expiryFormatMatch !== null;
+  const isExpiryDateValid = (() => {
+    if (!expiryFormatMatch) {
+      return false;
+    }
+    const month = Number(expiryFormatMatch[1]);
+    const year = 2000 + Number(expiryFormatMatch[2]);
+    if (month < 1 || month > 12) {
+      return false;
+    }
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth() + 1;
+    return (
+      year > currentYear || (year === currentYear && month >= currentMonth)
+    );
+  })();
+  const isExpiryValid = isExpiryFormatValid && isExpiryDateValid;
+  const expiryError =
+    expiry !== "" && !isExpiryFormatValid
+      ? "Enter the expiry date in MM/YY format."
+      : expiry !== "" && !isExpiryDateValid
+        ? "Enter a valid, non-expired date."
+        : "";
+
+  const isCvcValid = /^\d{3}$/.test(cvc);
+  const cvcError =
+    cvc !== "" && !isCvcValid ? "CVC must be exactly 3 digits." : "";
+
+  const isComplete = isCardValid && isNameValid && isExpiryValid && isCvcValid;
 
   return (
     <Modal open={open} title={`Buy ticket — ${event.name}`} onClose={onClose}>
@@ -56,31 +90,47 @@ export function BuyTicketModal({
       )}
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          value={card}
-          onChange={(e) => setCard(e.target.value)}
-          placeholder="Card number"
-          className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400"
-        />
+        <div className="flex flex-col gap-1">
+          <input
+            value={card}
+            onChange={(e) => setCard(e.target.value)}
+            placeholder="Card number"
+            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400"
+          />
+          {cardError && (
+            <span className="text-xs text-red-500">{cardError}</span>
+          )}
+        </div>
         <TextField
           label="Name on card"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Jane Doe"
+          error={nameError}
         />
         <div className="grid grid-cols-2 gap-4">
-          <input
-            value={expiry}
-            onChange={(e) => setExpiry(e.target.value)}
-            placeholder="MM/YY"
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400"
-          />
-          <input
-            value={cvc}
-            onChange={(e) => setCvc(e.target.value)}
-            placeholder="CVC"
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400"
-          />
+          <div className="flex flex-col gap-1">
+            <input
+              value={expiry}
+              onChange={(e) => setExpiry(e.target.value)}
+              placeholder="MM/YY"
+              className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400"
+            />
+            {expiryError && (
+              <span className="text-xs text-red-500">{expiryError}</span>
+            )}
+          </div>
+          <div className="flex flex-col gap-1">
+            <input
+              value={cvc}
+              onChange={(e) => setCvc(e.target.value)}
+              placeholder="CVC"
+              className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400"
+            />
+            {cvcError && (
+              <span className="text-xs text-red-500">{cvcError}</span>
+            )}
+          </div>
         </div>
 
         <div className="flex items-center justify-between border-t border-slate-100 pt-4">

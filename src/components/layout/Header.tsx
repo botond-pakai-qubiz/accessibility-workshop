@@ -1,9 +1,28 @@
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 
 export function Header() {
   const { currentUser, isAuthenticated, isAdmin, logout } = useAuth();
   const navigate = useNavigate();
+  const [adminMenuOpen, setAdminMenuOpen] = useState(false);
+  const adminMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!adminMenuOpen) {
+      return;
+    }
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        adminMenuRef.current &&
+        !adminMenuRef.current.contains(event.target as Node)
+      ) {
+        setAdminMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [adminMenuOpen]);
 
   const handleLogout = () => {
     logout();
@@ -39,20 +58,32 @@ export function Header() {
             </>
           )}
           {isAdmin && (
-            <>
-              <Link
-                to="/admin/events"
-                className="text-slate-600 hover:text-brand-600"
-              >
-                All events
-              </Link>
-              <Link
-                to="/admin/users"
-                className="text-slate-600 hover:text-brand-600"
+            <div ref={adminMenuRef} className="relative">
+              <span
+                onClick={() => setAdminMenuOpen((current) => !current)}
+                className="cursor-pointer text-slate-600 hover:text-brand-600"
               >
                 Admin
-              </Link>
-            </>
+              </span>
+              {adminMenuOpen && (
+                <div className="absolute right-0 z-20 mt-2 w-32 overflow-hidden rounded-md border border-slate-200 bg-white shadow-lg">
+                  <Link
+                    to="/admin/users"
+                    onClick={() => setAdminMenuOpen(false)}
+                    className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600"
+                  >
+                    Users
+                  </Link>
+                  <Link
+                    to="/admin/events"
+                    onClick={() => setAdminMenuOpen(false)}
+                    className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600"
+                  >
+                    Events
+                  </Link>
+                </div>
+              )}
+            </div>
           )}
           {isAuthenticated ? (
             <div className="flex items-center gap-3">
