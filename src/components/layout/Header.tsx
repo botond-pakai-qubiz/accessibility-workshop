@@ -50,21 +50,23 @@ export function Header() {
                 Admin
               </span>
               {adminMenuOpen && (
-                <div className="absolute right-0 z-20 mt-2 w-32 overflow-hidden rounded-md border border-slate-200 bg-white shadow-lg">
-                  <Link
-                    to="/admin/users"
-                    onClick={() => setAdminMenuOpen(false)}
-                    className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600"
-                  >
-                    Users
-                  </Link>
-                  <Link
-                    to="/admin/events"
-                    onClick={() => setAdminMenuOpen(false)}
-                    className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600"
-                  >
-                    Events
-                  </Link>
+                <div className="absolute right-0 top-full z-20 w-32 pt-2">
+                  <div className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-lg">
+                    <Link
+                      to="/admin/users"
+                      onClick={() => setAdminMenuOpen(false)}
+                      className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600"
+                    >
+                      Users
+                    </Link>
+                    <Link
+                      to="/admin/events"
+                      onClick={() => setAdminMenuOpen(false)}
+                      className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600"
+                    >
+                      Events
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
