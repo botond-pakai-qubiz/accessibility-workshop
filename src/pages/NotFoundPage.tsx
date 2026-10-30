@@ -7,9 +7,9 @@ export function NotFoundPage() {
       <div className="text-lg font-semibold text-slate-700">
         This page could not be found
       </div>
-      <div className="text-sm text-slate-400">
+      <p className="text-sm text-slate-500">
         The page you are looking for might have been moved or never existed.
-      </div>
+      </p>
       <Link
         to="/dashboard"
         className="mt-2 rounded-md bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600"

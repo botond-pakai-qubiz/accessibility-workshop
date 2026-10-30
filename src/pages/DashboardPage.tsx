@@ -26,17 +26,17 @@ export function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-10">
-      <div>
-        <div className="text-2xl font-semibold text-slate-800">
-          Hello, {currentUser?.name?.split(" ")[0]}
+        <div>
+          <h1 className="text-2xl font-semibold text-slate-800">
+            Hello, {currentUser?.name?.split(" ")[0]}
+          </h1>
+          <p className="text-sm text-slate-500">
+            Here is what is happening with your events.
+          </p>
         </div>
-        <div className="text-sm text-slate-500">
-          Here is what is happening with your events.
-        </div>
-      </div>
 
-      <section className="flex flex-col gap-4">
-        <div className="text-lg font-semibold text-slate-800">My events</div>
+        <section aria-label="My events">
+          <h2 className="text-lg font-semibold text-slate-800">My events</h2>
         {myEvents.length === 0 ? (
           <div className="rounded-lg border border-dashed border-slate-300 p-8 text-center text-sm text-slate-500">
             You have not signed up for any events yet.
@@ -57,9 +57,9 @@ export function DashboardPage() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <div className="text-lg font-semibold text-slate-800">
+        <h2 className="text-lg font-semibold text-slate-800">
           Upcoming events
-        </div>
+        </h2>
         <Carousel
           items={upcomingEvents}
           perView={4}

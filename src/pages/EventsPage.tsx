@@ -31,7 +31,7 @@ export function EventsPage() {
     <div className="flex flex-col gap-6">
       <div>
         <div className="text-2xl font-semibold text-slate-800">Events</div>
-        <div className="text-sm text-slate-400">Find something to attend.</div>
+        <p className="text-sm text-slate-500">Find something to attend.</p>
       </div>
 
       <EventFilters
@@ -43,7 +43,7 @@ export function EventsPage() {
       />
 
       {filtered.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-slate-300 p-10 text-center text-sm text-slate-400">
+        <div className="rounded-lg border border-dashed border-slate-300 p-10 text-center text-sm text-slate-500">
           No events match your filters.
         </div>
       ) : (

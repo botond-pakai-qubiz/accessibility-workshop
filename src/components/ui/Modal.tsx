@@ -104,7 +104,7 @@ export function Modal({ open, title, onClose, children }: ModalProps) {
           <span className="text-lg font-semibold text-slate-800">{title}</span>
           <button
             onClick={onClose}
-            className="rounded-md p-1 text-xl leading-none text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="rounded-md p-1 text-xl leading-none text-slate-500 hover:bg-slate-100 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
             aria-label={`Close ${title}`}
           >
             ×

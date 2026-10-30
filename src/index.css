@@ -6,7 +6,7 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-*:focus {
+*:focus:not(:focus-visible) {
   outline: none;
 }
 

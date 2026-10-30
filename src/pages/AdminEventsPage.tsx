@@ -21,9 +21,9 @@ export function AdminEventsPage() {
           <div className="text-2xl font-semibold text-slate-800">
             All events
           </div>
-          <div className="text-sm text-slate-400">
+          <p className="text-sm text-slate-500">
             {events.length} events in the platform.
-          </div>
+          </p>
         </div>
         <Button onClick={() => setModalOpen(true)}>Add event</Button>
       </div>

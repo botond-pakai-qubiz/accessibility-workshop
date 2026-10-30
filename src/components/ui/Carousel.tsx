@@ -17,10 +17,13 @@ export function Carousel<T>({
   getKey,
   renderItem,
 }: CarouselProps<T>) {
-  const { visibleItems, canGoPrev, canGoNext, next, prev } = useCarousel(
-    items,
-    perView,
-  );
+  const { visibleItems, canGoPrev, canGoNext, next, prev, activePage, pageCount } =
+    useCarousel(items, perView);
+
+  // Announce current position whenever it changes
+  const announcement = !canGoNext
+    ? "You have reached the end of the carousel."
+    : `Slide ${activePage} of ${pageCount}.`;
 
   return (
     <div className="flex items-center gap-3" role="region" aria-label="Carousel">
@@ -54,11 +57,21 @@ export function Carousel<T>({
             ? "cursor-pointer text-slate-600 hover:bg-slate-100"
             : "text-slate-300 cursor-not-allowed"
         }`}
-        aria-label="Next slide"
+        aria-label={canGoNext ? "Next slide" : undefined}
         aria-controls="carousel-items"
       >
         ›
       </button>
+
+      {/* Live region for carousel position announcements */}
+      <div
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+        role="status"
+      >
+        {announcement}
+      </div>
     </div>
   );
 }

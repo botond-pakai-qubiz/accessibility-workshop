@@ -54,12 +54,13 @@ export function EventDetailPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <span
+      <button
+        type="button"
         onClick={() => navigate(-1)}
-        className="cursor-pointer text-sm text-slate-400 hover:text-slate-600"
+        className="cursor-pointer rounded px-1 py-0.5 text-sm text-slate-500 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
       >
         ‹ Back
-      </span>
+      </button>
 
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
         <img src={event.image} className="h-64 w-full object-cover" />

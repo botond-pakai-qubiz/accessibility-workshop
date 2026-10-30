@@ -55,12 +55,6 @@ export function ChatbotWidget() {
   const dialogRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
-  // Pop-up appears on its own a moment after load, interrupting the user.
-  useEffect(() => {
-    const timer = window.setTimeout(() => setOpen(true), 10000);
-    return () => window.clearTimeout(timer);
-  }, []);
-
   // Move focus to the chat dialog when it opens, restore focus when it closes.
   useEffect(() => {
     if (open) {

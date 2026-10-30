@@ -71,7 +71,7 @@ export function AdminUsersPage() {
           <div className="text-2xl font-semibold text-slate-800">
             Admin — users
           </div>
-          <div className="text-sm text-slate-400">{rangeLabel} users</div>
+          <p className="text-sm text-slate-500">{rangeLabel} users</p>
         </div>
         {selectionCount > 0 && (
           <Button variant="danger" onClick={handleDelete}>
