@@ -1,4 +1,5 @@
 import { Modal } from "@/components/ui/Modal";
+import { Button } from "@/components/ui/Button";
 
 interface SessionTimeoutModalProps {
   open: boolean;
@@ -7,6 +8,7 @@ interface SessionTimeoutModalProps {
   onLogout: () => void;
 }
 
+// Replaced spans with Button elements for better accessibility and keyboard navigation.
 export function SessionTimeoutModal({
   open,
   secondsLeft,
@@ -30,19 +32,13 @@ export function SessionTimeoutModal({
         </p>
 
         <div className="flex justify-end gap-2">
-          <span
-            onClick={onLogout}
-            className="cursor-pointer px-4 py-2 text-sm text-slate-500 hover:text-slate-700"
-          >
+          <Button variant="ghost" onClick={onLogout}>
             Log out now
-          </span>
+          </Button>
 
-          <span
-            onClick={onStay}
-            className="cursor-pointer rounded-md bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600"
-          >
+          <Button onClick={onStay}>
             Stay signed in
-          </span>
+          </Button>
         </div>
       </div>
     </Modal>

@@ -26,8 +26,8 @@ export function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
       <div className="w-full max-w-sm rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
         <div className="mb-6 text-center">
-          <div className="text-2xl font-semibold text-brand-600">Eventer</div>
-          <div className="text-sm text-slate-400">Log in to your account</div>
+          <h1 className="text-2xl font-semibold text-brand-600">Eventer</h1>
+          <p className="text-sm text-slate-500">Log in to your account</p>
         </div>
 
         {error && (
@@ -43,6 +43,7 @@ export function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
+            autoFocus
           />
           <TextField
             label="Password"
@@ -56,8 +57,8 @@ export function LoginPage() {
           </Button>
         </form>
 
-        <div className="mt-6 rounded-md bg-slate-50 p-3 text-xs text-slate-500">
-          <div className="mb-1 font-medium text-slate-600">Demo accounts</div>
+        <section className="mt-6 rounded-md bg-slate-50 p-3 text-xs text-slate-500" aria-label="Demo account credentials">
+          <h2 className="mb-1 font-medium text-slate-600">Demo accounts</h2>
           <div>
             Admin: {DEMO_CREDENTIALS.admin.email} /{" "}
             {DEMO_CREDENTIALS.admin.password}
@@ -66,11 +67,14 @@ export function LoginPage() {
             User: {DEMO_CREDENTIALS.user.email} /{" "}
             {DEMO_CREDENTIALS.user.password}
           </div>
-        </div>
+        </section>
 
         <div className="mt-4 text-center text-sm text-slate-500">
           No account?{" "}
-          <Link to="/register" className="text-brand-600 hover:underline">
+          <Link
+            to="/register"
+            className="text-brand-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded"
+          >
             Create one
           </Link>
         </div>

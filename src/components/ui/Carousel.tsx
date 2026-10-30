@@ -23,34 +23,42 @@ export function Carousel<T>({
   );
 
   return (
-    <div className="flex items-center gap-3">
-      <div
+    <div className="flex items-center gap-3" role="region" aria-label="Carousel">
+      <button
+        type="button"
         onClick={canGoPrev ? prev : undefined}
-        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 text-lg ${
+        disabled={!canGoPrev}
+        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ${
           canGoPrev
             ? "cursor-pointer text-slate-600 hover:bg-slate-100"
-            : "text-slate-300"
+            : "text-slate-300 cursor-not-allowed"
         }`}
+        aria-label="Previous slide"
+        aria-controls="carousel-items"
       >
         ‹
-      </div>
+      </button>
 
-      <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div id="carousel-items" className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {visibleItems.map((item) => (
           <div key={getKey(item)}>{renderItem(item)}</div>
         ))}
       </div>
 
-      <div
+      <button
+        type="button"
         onClick={canGoNext ? next : undefined}
-        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 text-lg ${
+        disabled={!canGoNext}
+        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ${
           canGoNext
             ? "cursor-pointer text-slate-600 hover:bg-slate-100"
-            : "text-slate-300"
+            : "text-slate-300 cursor-not-allowed"
         }`}
+        aria-label="Next slide"
+        aria-controls="carousel-items"
       >
         ›
-      </div>
+      </button>
     </div>
   );
 }

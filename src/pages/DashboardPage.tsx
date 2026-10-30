@@ -30,7 +30,7 @@ export function DashboardPage() {
         <div className="text-2xl font-semibold text-slate-800">
           Hello, {currentUser?.name?.split(" ")[0]}
         </div>
-        <div className="text-sm text-slate-400">
+        <div className="text-sm text-slate-500">
           Here is what is happening with your events.
         </div>
       </div>
@@ -38,7 +38,7 @@ export function DashboardPage() {
       <section className="flex flex-col gap-4">
         <div className="text-lg font-semibold text-slate-800">My events</div>
         {myEvents.length === 0 ? (
-          <div className="rounded-lg border border-dashed border-slate-300 p-8 text-center text-sm text-slate-400">
+          <div className="rounded-lg border border-dashed border-slate-300 p-8 text-center text-sm text-slate-500">
             You have not signed up for any events yet.
           </div>
         ) : (

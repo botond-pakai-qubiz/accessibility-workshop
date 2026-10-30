@@ -28,7 +28,7 @@ export function EventCard({ event, onOpen, onDismiss, badge }: EventCardProps) {
         </button>
       )}
       <div className="relative">
-        <img src={event.image} className="h-36 w-full object-cover" />
+        <img src={event.image} alt={event.name} className="h-36 w-full object-cover" />
         {badge && (
           <span className="absolute left-2 top-2 rounded bg-brand-500 px-2 py-0.5 text-xs font-medium text-white">
             {badge}
@@ -39,7 +39,7 @@ export function EventCard({ event, onOpen, onDismiss, badge }: EventCardProps) {
         <div className="text-base font-semibold text-slate-800">
           {event.name}
         </div>
-        <div className="text-xs text-slate-400">{event.location}</div>
+        <div className="text-xs text-slate-500">{event.location}</div>
         <div className="text-xs text-slate-500">
           {formatDate(event.startDateTime)}
         </div>

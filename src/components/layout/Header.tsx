@@ -41,28 +41,35 @@ export function Header() {
             </>
           )}
           {isAdmin && (
-            <div
-              className="relative"
-              onMouseEnter={() => setAdminMenuOpen(true)}
-              onMouseLeave={() => setAdminMenuOpen(false)}
-            >
-              <span className="cursor-pointer text-slate-600 hover:text-brand-600">
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setAdminMenuOpen((v) => !v)}
+                className="cursor-pointer text-slate-600 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded px-1"
+                aria-expanded={adminMenuOpen}
+                aria-haspopup="true"
+              >
                 Admin
-              </span>
+              </button>
               {adminMenuOpen && (
-                <div className="absolute right-0 top-full z-20 w-32 pt-2">
+                <div
+                  className="absolute right-0 top-full z-20 w-32 pt-2"
+                  role="menu"
+                >
                   <div className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-lg">
                     <Link
                       to="/admin/users"
                       onClick={() => setAdminMenuOpen(false)}
-                      className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600"
+                      className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                      role="menuitem"
                     >
                       Users
                     </Link>
                     <Link
                       to="/admin/events"
                       onClick={() => setAdminMenuOpen(false)}
-                      className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600"
+                      className="block px-3 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                      role="menuitem"
                     >
                       Events
                     </Link>
@@ -73,7 +80,7 @@ export function Header() {
           )}
           {isAuthenticated ? (
             <div className="flex items-center gap-3">
-              <span className="text-slate-400">{currentUser?.name}</span>
+              <span className="font-medium text-slate-600">{currentUser?.name}</span>
               <button
                 type="button"
                 onClick={handleLogout}

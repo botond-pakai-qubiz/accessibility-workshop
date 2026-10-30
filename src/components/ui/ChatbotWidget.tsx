@@ -52,12 +52,27 @@ export function ChatbotWidget() {
     },
   ]);
   const listRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
 
   // Pop-up appears on its own a moment after load, interrupting the user.
   useEffect(() => {
     const timer = window.setTimeout(() => setOpen(true), 10000);
     return () => window.clearTimeout(timer);
   }, []);
+
+  // Move focus to the chat dialog when it opens, restore focus when it closes.
+  useEffect(() => {
+    if (open) {
+      previousActiveElement.current = document.activeElement as HTMLElement;
+      setTimeout(() => {
+        dialogRef.current?.focus();
+      }, 100);
+    } else if (previousActiveElement.current) {
+      previousActiveElement.current.focus();
+      previousActiveElement.current = null;
+    }
+  }, [open]);
 
   // Keep the transcript scrolled to the newest message.
   useEffect(() => {
@@ -82,20 +97,31 @@ export function ChatbotWidget() {
   return (
     <div className="fixed bottom-5 right-5 z-[9999]">
       {open && (
-        <div className="mb-3 flex h-96 w-80 flex-col overflow-hidden rounded-xl bg-white shadow-2xl">
+        <div
+          ref={dialogRef}
+          tabIndex={-1}
+          className="mb-3 flex h-96 w-80 flex-col overflow-hidden rounded-xl bg-white shadow-2xl"
+          role="dialog"
+          aria-label="Chat with Eva"
+        >
           <div className="flex items-center justify-between bg-brand-500 px-4 py-3 text-white">
             <span className="text-sm font-semibold">Eva — Event Assistant</span>
-            <span
+            <button
+              type="button"
               onClick={() => setOpen(false)}
-              className="cursor-pointer text-lg leading-none"
+              className="rounded-md p-1 text-lg leading-none text-white hover:bg-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+              aria-label="Close chat"
             >
               ×
-            </span>
+            </button>
           </div>
 
           <div
             ref={listRef}
             className="flex-1 space-y-2 overflow-y-auto px-3 py-3"
+            role="log"
+            aria-live="polite"
+            aria-label="Chat messages"
           >
             {messages.map((m, i) => (
               <div
@@ -121,24 +147,30 @@ export function ChatbotWidget() {
                 }
               }}
               placeholder="Type a message…"
-              className="flex-1 rounded-md bg-slate-50 px-3 py-2 text-sm text-slate-700 placeholder:text-slate-300"
+              className="flex-1 rounded-md bg-slate-50 px-3 py-2 text-sm text-slate-700 placeholder:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+              aria-label="Type a message"
             />
-            <div
+            <button
+              type="button"
               onClick={send}
-              className="cursor-pointer select-none rounded-md bg-brand-500 px-3 py-2 text-white"
+              disabled={!draft.trim()}
+              className="rounded-md bg-brand-500 px-3 py-2 text-white hover:bg-brand-600 disabled:bg-brand-500/50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+              aria-label="Send message"
             >
               ➤
-            </div>
+            </button>
           </div>
         </div>
       )}
 
-      <div
+      <button
+        type="button"
         onClick={() => setOpen((v) => !v)}
-        className="ml-auto flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-brand-500 text-2xl text-white shadow-lg hover:bg-brand-600"
+        className="ml-auto flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-brand-500 text-2xl text-white shadow-lg hover:bg-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+        aria-label={open ? "Close chat" : "Open chat"}
       >
         💬
-      </div>
+      </button>
     </div>
   );
 }
